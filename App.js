@@ -6,10 +6,11 @@ import P1 from './components/P1';
 
 import P2_5 from './components/P2_5';
 import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 
 export default function App() {
   return (
-   <SignIn></SignIn>
+    <SignUp></SignUp>
   );
 }
 

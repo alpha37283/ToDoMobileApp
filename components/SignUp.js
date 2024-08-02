@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, Image, Pressable, TextInput, useWindowDimensions, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { useFonts } from 'expo-font';
 
-function SignIn() {
+function SignUp() {
   const { width } = useWindowDimensions();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,15 +25,30 @@ function SignIn() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <LinearGradient colors={['#05243E', '#1253AA']} style={styles.gradient}>
         <SafeAreaView style={styles.safeArea}>
-                <View style = {styles.textsUpper}>
-                  <Image style={styles.img} source={require('../assets/Checkmark.png')} />
+            <View style = {styles.textsUpper}>
+                <Image style={styles.img} source={require('../assets/Checkmark.png')} />
                         <View style={styles.txts}>
                             <Text style={styles.txtWel}>Welcome Back to DO IT</Text>
-                            <Text style={styles.txtWelSub}>Have another productive day!</Text>
+                            <Text style={styles.txtWelSub}>create an account and Join us now!</Text>
                         </View>
                 </View>
             <View style={styles.upper}>
                     <View style={styles.inputs}>
+                        <View style={[styles.inputContainer, { width: width * 0.9 }]}>
+                            <Image style={styles.inputIcon} source={require('../assets/PersonLogo.png')} />
+                            <TextInput
+                                style={styles.email}
+                                placeholder="Full Name"
+                                value={email}
+                                onChangeText={setEmail}
+                                keyboardType="email-address"
+                                returnKeyType="next"
+                                onSubmitEditing={() => {
+                                this.passwordInput.focus();
+                                }}
+                                blurOnSubmit={false}
+                            />
+                        </View>
                         <View style={[styles.inputContainer, { width: width * 0.9 }]}>
                         <Image style={styles.inputIcon} source={require('../assets/EmailLogo.png')} />
                         <TextInput
@@ -61,19 +76,18 @@ function SignIn() {
                             returnKeyType="done"
                         />
                         </View>
-                        <Text style={[styles.forget, { marginLeft: width * 0.55 }]}>forget password?</Text>
                         <Pressable style={[styles.button, { width: width * 0.9 }]} onPress={handleSubmit}>
-                        <Text style={styles.buttonText}>Sign Up</Text>
+                        <Text style={styles.buttonText}>Sign In</Text>
                         </Pressable>
                         <View style={styles.dhac}>
-                        <Text style={styles.sgnup1}>Don't have an account?</Text>
-                        <Text style={styles.sgnup2}>Sign up</Text>
+                        <Text style={styles.sgnup1}>Already have an account ?</Text>
+                        <Text style={styles.sgnup2}>Sign In</Text>
                         </View>
                     </View>
             </View>
 
           <View style={styles.sgnWith}>
-            <Text style={[styles.sgnup1, { marginRight: 20 }]}>Sign In with:</Text>
+            <Text style={[styles.sgnup1, { marginRight: 20 }]}>Sign Up with:</Text>
             <View style={styles.logoContainer}>
               <Image style={styles.aplLogo} source={require('../assets/AppleLogo.png')} />
             </View>
@@ -168,7 +182,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Ubuntu-Medium',
   },
   forget: {
-    marginBottom : 10,
+    marginTop: 10,
     color: 'white',
     fontSize: 14,
     fontFamily: 'Ubuntu-Medium',
@@ -213,4 +227,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignIn;
+export default SignUp;

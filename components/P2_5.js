@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient'; // Ensure this import
 import OnBoardingItems from './OnBoardingItems';
 import slides from './slides'; // Import the slides array
 import Paginator from './Paginator';
-import NextBtn from './NextBtn';
+
 
 
 
@@ -52,12 +52,20 @@ function P2_5() {
           ref={slidesRef}
         />
 
-        <View style = {styles.bottom}>
-            <Paginator data={slides} scrollX={scrollX} />
-            <TouchableOpacity onPress={scrollTo} style={styles.imgContainer}>
-              <Image source={require('../assets/nextBtn.png')} style={styles.img} />
-            </TouchableOpacity>
+        <View style={styles.bottom}>
+          <Paginator data={slides} scrollX={scrollX} />
+          <TouchableOpacity onPress={scrollTo} style={styles.imgContainer}>
+            <Image
+              source={
+                currentIndex === slides.length - 1
+                  ? require('../assets/tickBtn.png')// Different image for the last slide
+                  : require('../assets/nextBtn.png')
+              }
+              style={styles.img}
+            />
+          </TouchableOpacity>
         </View>
+
         
       </SafeAreaView>
     </LinearGradient>

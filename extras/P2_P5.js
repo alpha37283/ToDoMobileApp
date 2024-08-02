@@ -3,7 +3,7 @@ import { View, Text, Image, Dimensions, StyleSheet } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import slides from './slides';
+import slides from '../components/slides';
 
 const { width, height } = Dimensions.get('window');
 

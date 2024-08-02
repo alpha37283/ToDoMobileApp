@@ -11,14 +11,14 @@ const Paginator = ({ data, scrollX }) => {
 
         const dotWidth = scrollX.interpolate({
           inputRange,
-          outputRange: [10, 20, 10],
+          outputRange: [20, 30, 20],
           extrapolate: 'clamp',
         });
 
         const opacity = scrollX.interpolate({
           inputRange,
           outputRange: [0.3, 1, 0.3],
-          extrapolate: 'clamp',
+          //extrapolate: 'clamp',
         });
 
         return (
@@ -38,14 +38,15 @@ const styles = StyleSheet.create({
     height: 60,
     justifyContent: 'center', // Center dots horizontally
     alignItems: 'center', // Center dots vertically
-    color : 'white'
+    color : 'white',
+    marginLeft : 110
 
   },
   dot: {
-    height: 10,
+    height: 7,
     borderRadius: 5,
     backgroundColor: 'white',
-    marginHorizontal: 8,
+    marginHorizontal: 5,
   },
 });
 

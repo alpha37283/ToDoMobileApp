@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { FlatList, SafeAreaView, StyleSheet, View, Animated } from 'react-native';
+import { FlatList, SafeAreaView, StyleSheet, View, Animated, Image, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'; // Ensure this import
 import OnBoardingItems from './OnBoardingItems';
 import slides from './slides'; // Import the slides array
@@ -18,6 +18,15 @@ function P2_5() {
   }).current;
 
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
+
+  const scrollTo = () => {
+    if(currentIndex < slides.length - 1){
+      slidesRef.current.scrollToIndex({index : currentIndex  + 1});
+    } else
+    {
+      console.log('Last Item !!!! ')
+    }
+  }
 
   return (
     <LinearGradient
@@ -43,7 +52,12 @@ function P2_5() {
           ref={slidesRef}
         />
 
-        <Paginator data={slides} scrollX={scrollX} />
+        <View style = {styles.bottom}>
+            <Paginator data={slides} scrollX={scrollX} />
+            <TouchableOpacity onPress={scrollTo} style={styles.imgContainer}>
+              <Image source={require('../assets/nextBtn.png')} style={styles.img} />
+            </TouchableOpacity>
+        </View>
         
       </SafeAreaView>
     </LinearGradient>
@@ -58,9 +72,21 @@ const styles = StyleSheet.create({
     flex: 1, // Adjusted to make the SafeAreaView fill the available space
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
   },
- 
+  img: {
+    width: 90,
+    height : 90,
+    resizeMode: 'contain',
+    marginLeft : 20
+  
+  },
+  bottom : {
+    flexDirection : 'row',
+    alignItems : 'center',
+    justifyContent: 'space-between',
+    marginBottom : 30
+  }
+
 });
 
 export default P2_5;

@@ -21,7 +21,7 @@ import grpTasks from './rawDATA/grpTasks';
 export default function App() {
   return (
     <View style = {style.container }>
-      <InCompleteTasks/>
+      <HomePage/>
     </View>
   );
 }

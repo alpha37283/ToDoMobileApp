@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import GroupTasks from './GroupTasks';
 import InCompleteTasks from './InCompleteTasks';
+import CompletedTasks from './CompletedTasks';
 
 
 function HomePage() {
@@ -34,6 +35,9 @@ function HomePage() {
           </View>
           <View style = {[styles.grpTask, {width : width , height : width * 0.5}]}>
             <InCompleteTasks></InCompleteTasks>
+          </View>
+          <View style = {[styles.grpTask, {width : width , height : width * 0.5}]}>
+            <CompletedTasks></CompletedTasks>
           </View>
         </ScrollView>
       </SafeAreaView>

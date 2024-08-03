@@ -44,7 +44,7 @@ function GroupTasks() {
                                             </View>
                                             ))}
                                             <View style = {styles.addBtn}>
-                                                    <Image source={require('../assets/icnAdd.png')}/>
+                                                    <Image source={require('../assets/icnAdd.png')} style = {styles.icnAdd }/>
                                             </View>
                                 </View>
 
@@ -122,7 +122,10 @@ const styles = StyleSheet.create({
     // borderWidth : 1,
     borderRadius: 30, // Circle shape
   },
- 
+  icnAdd : {
+    width : 20,
+    height : 20
+  }
 });
 
 export default GroupTasks;

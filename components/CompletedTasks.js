@@ -1,11 +1,12 @@
-import React from 'react';
-import { View, Text, ScrollView, StyleSheet, useWindowDimensions, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, ScrollView, StyleSheet, useWindowDimensions, Image, TouchableOpacity } from 'react-native';
+import Tasks from '../rawDATA/Tasks';
 import { useFonts } from 'expo-font';
 
-import Tasks from '../rawDATA/Tasks';
-
-function CompletedTasks({ tasks }) {
+function CompletedTasks() {
   const { width } = useWindowDimensions();
+
+  const [tasks, setTasks] = useState(Tasks);
 
   const [fontsLoaded] = useFonts({
     'Ubuntu-Medium': require('../assets/fonts/Ubuntu-Medium.ttf'),
@@ -15,17 +16,27 @@ function CompletedTasks({ tasks }) {
     return null; // Return null or a loader until fonts are loaded
   }
 
+
+  const filteredTasks = tasks.filter(task => !task.isComplete);
+
   return (
     <View style={styles.main}>
       <Text style={styles.incText}>Completed Tasks</Text>
       <ScrollView contentContainerStyle={[styles.scroll, { padding: width * 0.05 }]} showsHorizontalScrollIndicator={false}>
-        {Tasks.map(task => (
+        {filteredTasks.map(task => (
           <View key={task.id} style={[styles.taskContainer, { width: width * 0.95 }]}>
+              <TouchableOpacity
+                style={[styles.checkCom, { backgroundColor: '#0ea5e9'}]}
+                
+              >
+                <Image style={styles.tickMark} source={require('../assets/tickMark.png')} />
+              </TouchableOpacity>
+
             <View style={styles.tdandt}>
-              <Text style={[styles.title, { fontSize: width * 0.05 }]}>{task.title}</Text>
+              <Text style={[styles.title, { fontSize: width * 0.045 }]}>{task.title}</Text>
               <View style={styles.dandt}>
-                <Text style={[styles.day, { fontSize: width * 0.04 }]}>{task.day} | </Text>
-                <Text style={[styles.time, { fontSize: width * 0.04 }]}>{task.time}</Text>
+                <Text style={[styles.day, { fontSize: width * 0.035 }]}>{task.day} | </Text>
+                <Text style={[styles.time, { fontSize: width * 0.035 }]}>{task.time}</Text>
               </View>
             </View>
             <View style={styles.nxt}>
@@ -56,6 +67,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingLeft: 20,
     paddingRight: 20,
+  },
+  checkCom: {
+    width: 30,
+    height: 30,
+    borderRadius: 20, // Circle shape
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 10,
+  },
+  tickMark: {
+    width: 20,
+    height: 20,
   },
   incText: {
     fontWeight: 'bold',
@@ -96,4 +119,8 @@ const styles = StyleSheet.create({
   },
 });
 
+
+
 export default CompletedTasks;
+
+

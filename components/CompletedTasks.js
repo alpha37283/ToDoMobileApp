@@ -52,6 +52,7 @@ function CompletedTasks() {
 const styles = StyleSheet.create({
   main: {
     maxHeight : 180,
+    top : 10
     
   },
   scroll: {

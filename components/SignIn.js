@@ -1,3 +1,6 @@
+// make sign in and sign up text pressable
+
+
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, Image, Pressable, TextInput, useWindowDimensions, TouchableWithoutFeedback, Keyboard } from 'react-native';
@@ -35,35 +38,35 @@ function SignIn() {
             <View style={styles.upper}>
                     <View style={styles.inputs}>
                         <View style={[styles.inputContainer, { width: width * 0.9 }]}>
-                        <Image style={styles.inputIcon} source={require('../assets/EmailLogo.png')} />
-                        <TextInput
-                            style={styles.email}
-                            placeholder="E-mail"
-                            value={email}
-                            onChangeText={setEmail}
-                            keyboardType="email-address"
-                            returnKeyType="next"
-                            onSubmitEditing={() => {
-                            this.passwordInput.focus();
-                            }}
-                            blurOnSubmit={false}
-                        />
+                            <Image style={styles.inputIcon} source={require('../assets/EmailLogo.png')} />
+                            <TextInput
+                                style={styles.email}
+                                placeholder="E-mail"
+                                value={email}
+                                onChangeText={setEmail}
+                                keyboardType="email-address"
+                                returnKeyType="next"
+                                onSubmitEditing={() => {
+                                this.passwordInput.focus();
+                                }}
+                                blurOnSubmit={false}
+                            />
                         </View>
                         <View style={[styles.inputContainer, { width: width * 0.9 }]}>
-                        <Image style={styles.inputIcon} source={require('../assets/Lock.png')} />
-                        <TextInput
-                            ref={(input) => { this.passwordInput = input; }}
-                            style={styles.password}
-                            placeholder="Password"
-                            value={password}
-                            onChangeText={setPassword}
-                            secureTextEntry
-                            returnKeyType="done"
-                        />
+                            <Image style={styles.inputIcon} source={require('../assets/Lock.png')} />
+                            <TextInput
+                                ref={(input) => { this.passwordInput = input; }}
+                                style={styles.password}
+                                placeholder="Password"
+                                value={password}
+                                onChangeText={setPassword}
+                                secureTextEntry
+                                returnKeyType="done"
+                            />
                         </View>
                         <Text style={[styles.forget, { marginLeft: width * 0.55 }]}>forget password?</Text>
                         <Pressable style={[styles.button, { width: width * 0.9 }]} onPress={handleSubmit}>
-                        <Text style={styles.buttonText}>Sign Up</Text>
+                            <Text style={styles.buttonText}>Sign Up</Text>
                         </Pressable>
                         <View style={styles.dhac}>
                         <Text style={styles.sgnup1}>Don't have an account?</Text>

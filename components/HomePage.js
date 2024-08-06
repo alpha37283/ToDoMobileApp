@@ -33,7 +33,7 @@ function HomePage() {
           <View style = {[styles.grpTask, {width : width , height : width * 0.5}]}>
             <GroupTasks></GroupTasks>
           </View>
-          <View style = {[styles.grpTask, {width : width , height : width * 0.5}]}>
+          <View style = {[styles.grpTask, {width : width , height : width * 0.42}]}>
             <InCompleteTasks></InCompleteTasks>
           </View>
           <View style = {[styles.grpTask, {width : width , height : width * 0.42}]}>

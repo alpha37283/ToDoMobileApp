@@ -20,13 +20,17 @@ import grpTasks from './rawDATA/grpTasks';
 import tabs from './navigation/tabs';
 import TabsNavigator from './navigation/tabs';
 
+
+import TasksPage from './components/TasksPage';
+
 import { NavigationContainer } from '@react-navigation/native';
+
+
+import Tash from './components/Tash';
 
 export default function App() {
   return (
-    <NavigationContainer style = {style.container }>
-      <TabsNavigator/>
-    </NavigationContainer>
+ <Tash></Tash>
   );
 }
 
@@ -36,3 +40,10 @@ const style = StyleSheet.create({
     backgroundColor : 'orange'
   }
 })
+
+/*
+   <NavigationContainer style = {style.container }>
+      <TabsNavigator/>
+    </NavigationContainer>
+
+*/

@@ -51,10 +51,11 @@ function CompletedTasks() {
 
 const styles = StyleSheet.create({
   main: {
-    flex: 1,
+    maxHeight : 180,
+    
   },
   scroll: {
-    flexGrow: 1,
+    flexGrow: 0, // Ensure the ScrollView shrinks to fit its content
     alignItems: 'center',
   },
   taskContainer: {
@@ -81,13 +82,14 @@ const styles = StyleSheet.create({
     height: 20,
   },
   incText: {
+    marginBottom : 5,
     fontWeight: 'bold',
     fontFamily: 'Ubuntu-Medium',
     letterSpacing: 1.5,
     fontSize: 15,
     color: 'white',
     marginLeft: 12,
-    marginTop: 10,
+    
   },
   nxt: {
     justifyContent: 'center',

@@ -20,9 +20,9 @@ function HomePage() {
 
   return (
     <LinearGradient colors={['#1253AA', '#05243E']} style={styles.gradient}>
-      <SafeAreaView style={styles.safearea} >
-        <ScrollView contentContainerStyle={[styles.scrollContainer, { padding: width * 0.05 }]}>
-          <View style={[styles.header, { marginBottom: height * 0.02 }]}>
+      <SafeAreaView style={[styles.safearea]} >
+        <View contentContainerStyle={[styles.container, { padding: width * 0.05 }]}>
+          <View style={[styles.header, { marginBottom: height * 0.02, width : width * 0.9 }]}>
             <Image source={require('../assets/Profile.png')} style={[styles.avatar, { width: width * 0.12, height: width * 0.12, borderRadius: (width * 0.12) / 2 }]} />
             <View style={styles.userInfo}>
               <Text style={[styles.name, { fontSize: width * 0.05 }]}>Oussama Chahidi</Text>
@@ -36,10 +36,10 @@ function HomePage() {
           <View style = {[styles.grpTask, {width : width , height : width * 0.5}]}>
             <InCompleteTasks></InCompleteTasks>
           </View>
-          <View style = {[styles.grpTask, {width : width , height : width * 0.5}]}>
+          <View style = {[styles.grpTask, {width : width , height : width * 0.42}]}>
             <CompletedTasks></CompletedTasks>
           </View>
-        </ScrollView>
+        </View>
       </SafeAreaView>
     </LinearGradient>
   );
@@ -50,18 +50,19 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   safearea: {
+    alignItems : 'center',
+    justifyContent : 'center',
     flex: 1,
+    marginTop : -50
   },
-  scrollContainer: {
-    flexGrow: 1,
-    alignItems: 'center',
+  container: {
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: '100%',
-    marginLeft : -8
+    marginLeft : 12
+  
   },
   avatar: {
     // Dimensions will be adjusted dynamically

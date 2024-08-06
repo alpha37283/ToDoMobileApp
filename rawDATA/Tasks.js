@@ -18,7 +18,7 @@ const Tasks = [
         title : 'Client Meeting',
         day : 'Tuesday',
         time : '10:30 PM',
-        isComplete : true
+        isComplete : false
      },
 
 ]

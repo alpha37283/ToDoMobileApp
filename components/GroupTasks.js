@@ -57,13 +57,13 @@ function GroupTasks() {
 }
 
 const styles = StyleSheet.create({
-   main: {
-    flex: 1,
-    },
-   container: {
-    flexGrow: 1,
-    alignItems : 'center'
-      },
+  main: {
+    maxHeight : 180,
+ },
+ container: {
+   flexGrow: 0, // Ensure the ScrollView shrinks to fit its content
+   alignItems: 'center',
+ },
    grpText : {
     fontWeight: 'bold',
     fontFamily: 'Ubuntu-Medium',
@@ -71,16 +71,17 @@ const styles = StyleSheet.create({
     fontSize : 15,
     color : 'white',
     marginLeft : 12,
-    marginTop : 10
+
+   
 
   },
   taskContainer: {
-    marginBottom: 20,
+    marginBottom: 0,
     padding: 20,
     backgroundColor: 'white',
     borderRadius: 5,
     marginLeft: 10,
-    marginTop : 30
+    
   },
   title: {
     fontWeight: 'bold',

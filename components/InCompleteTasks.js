@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, useWindowDimensions, Image, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, useWindowDimensions, Image } from 'react-native';
 import Tasks from '../rawDATA/Tasks';
 import { useFonts } from 'expo-font';
 
 function InCompleteTasks() {
   const { width } = useWindowDimensions();
-
   const [tasks, setTasks] = useState(Tasks);
 
   const [fontsLoaded] = useFonts({
@@ -16,20 +15,12 @@ function InCompleteTasks() {
     return null; // Return null or a loader until fonts are loaded
   }
 
-  // const handlePress = (id) => {
-  //   setTasks(prevTasks =>
-  //     prevTasks.map(task =>
-  //       task.id === id ? { ...task, isComplete: true } : task
-  //     )
-  //   );
-  // };
-
   const filteredTasks = tasks.filter(task => !task.isComplete);
 
   return (
-    <View style={styles.main}>
+    <View style={[styles.main]}>
       <Text style={styles.incText}>Incompleted Tasks</Text>
-      <ScrollView contentContainerStyle={[styles.scroll, { padding: width * 0.05 }]} showsHorizontalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={[styles.scroll, { padding: width * 0.05 }]} showsVerticalScrollIndicator={false}>
         {filteredTasks.map(task => (
           <View key={task.id} style={[styles.taskContainer, { width: width * 0.95 }]}>
             <View style={styles.tdandt}>
@@ -51,10 +42,11 @@ function InCompleteTasks() {
 
 const styles = StyleSheet.create({
   main: {
-    flex: 1,
+    maxHeight : 180,
+    
   },
   scroll: {
-    flexGrow: 1,
+    flexGrow: 0, // Ensure the ScrollView shrinks to fit its content
     alignItems: 'center',
   },
   taskContainer: {
@@ -68,27 +60,14 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
   },
-  checkCom: {
-    width: 30,
-    height: 30,
-    borderRadius: 20, // Circle shape
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 10,
-  },
-  tickMark: {
-    width: 20,
-    height: 20,
-  },
   incText: {
-    marginBottom : 5,
+    marginBottom: 5,
     fontWeight: 'bold',
     fontFamily: 'Ubuntu-Medium',
     letterSpacing: 1.5,
     fontSize: 15,
     color: 'white',
     marginLeft: 12,
-    marginTop: 10,
   },
   nxt: {
     justifyContent: 'center',
@@ -103,7 +82,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Ubuntu-Medium',
     letterSpacing: 1.5,
-  
   },
   dandt: {
     flexDirection: 'row',

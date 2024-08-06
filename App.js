@@ -17,12 +17,16 @@ import CompletedTasks from './components/CompletedTasks';
 import GroupTasks from './components/GroupTasks';
 
 import grpTasks from './rawDATA/grpTasks';
+import tabs from './navigation/tabs';
+import TabsNavigator from './navigation/tabs';
+
+import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
   return (
-    <View style = {style.container }>
-      <HomePage/>
-    </View>
+    <NavigationContainer style = {style.container }>
+      <TabsNavigator/>
+    </NavigationContainer>
   );
 }
 

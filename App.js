@@ -26,24 +26,28 @@ import TasksPage from './components/TasksPage';
 import { NavigationContainer } from '@react-navigation/native';
 
 
-import Tash from './components/Tash';
+import AddTask from './components/AddTasks';
 
 export default function App() {
   return (
- <Tash></Tash>
+<NavigationContainer style = {styles.container }>
+   <TabsNavigator/>
+ </NavigationContainer> 
+    
   );
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container : {
     flex : 1,
-    backgroundColor : 'orange'
-  }
+    backgroundColor : 'orange',
+    justifyContent : 'flex-end'
+  },
+  
 })
 
-/*
-   <NavigationContainer style = {style.container }>
-      <TabsNavigator/>
-    </NavigationContainer>
 
-*/
+  // <View style = {styles.container}> 
+  //       <AddTask style = {styles.add}></AddTask>
+  //   </View>
+  

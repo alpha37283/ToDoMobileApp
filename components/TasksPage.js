@@ -1,13 +1,15 @@
-import { LinearGradient } from 'expo-linear-gradient';
-import React from 'react';
-import { Pressable, SafeAreaView, TextInput, Keyboard, TouchableWithoutFeedback, useWindowDimensions, TouchableOpacity } from 'react-native';
+// TasksPage.js
+import React, { useState } from 'react';
+import { TouchableOpacity, SafeAreaView, TextInput, Keyboard, TouchableWithoutFeedback, useWindowDimensions, Modal, Pressable } from 'react-native';
 import { View, StyleSheet, Image, Text } from 'react-native';
-
+import { LinearGradient } from 'expo-linear-gradient';
 import TodayTasks from '../rawDATA/TodayTasks';
 import { useFonts } from 'expo-font';
+import AddTask from './AddTasks';
 
 function TasksPage() {
     const { width } = useWindowDimensions();
+    const [modalVisible, setModalVisible] = useState(false);
 
     const [fontsLoaded] = useFonts({
         'Ubuntu-Medium': require('../assets/fonts/Ubuntu-Medium.ttf')
@@ -33,7 +35,7 @@ function TasksPage() {
                                     <Image source={require('../assets/icnSearch.png')} style={styles.icns} />
                                 </View>
                             </Pressable>
-                            <Pressable style={[styles.pressableSearch, { width: width * 0.3 }]}>
+                            <Pressable style={[styles.pressableSearch, { width: width * 0.27 }]}>
                                 <View style={styles.sort}>
                                     <TextInput
                                         placeholder='Sort by: '
@@ -56,11 +58,23 @@ function TasksPage() {
                                 </TouchableOpacity>
                             ))}
                         </View>
-                        <View style={styles.v3}>
-                            {/* Additional content can be added here */}
+                        <View style={[styles.v3, { marginTop: width * 0.5 }]}>
+                            <View style={[styles.btn, { right: width * 0.05 }]}>
+                                <TouchableOpacity onPress={() => setModalVisible(true)}>
+                                    <Image style={styles.addBtn} source={require('../assets/icnAdd.png')} />
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
                 </SafeAreaView>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => setModalVisible(false)}
+                >
+                    <AddTask visible = {setModalVisible} onClose={() => setModalVisible(false)} />
+                </Modal>
             </LinearGradient>
         </TouchableWithoutFeedback>
     );
@@ -72,7 +86,7 @@ const styles = StyleSheet.create({
     },
     safeArea: {
         flex: 1,
-        padding: 20,
+        padding: 10,
     },
     main: {
         flex: 1,
@@ -110,6 +124,7 @@ const styles = StyleSheet.create({
     },
     v3: {
         flex: 1,
+        alignItems: 'flex-end'
     },
     icns: {
         height: 30,
@@ -130,10 +145,11 @@ const styles = StyleSheet.create({
     },
     tasks: {
         backgroundColor: 'white',
-        padding: 15,
+        padding: 10,
         borderRadius: 8,
         flexShrink: 1,
         marginBottom: 20,
+        marginLeft: 5
     },
     title: {
         fontWeight: 'bold',
@@ -152,6 +168,21 @@ const styles = StyleSheet.create({
         fontFamily: 'Ubuntu-Medium',
         letterSpacing: 1.5,
     },
+    btn: {
+        width: 100,
+        height: 100,
+        backgroundColor: '#63D9F3',
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+
+    },
+    addBtn: {
+        width: 50,
+        height: 50
+    }
 });
 
 export default TasksPage;

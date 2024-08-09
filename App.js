@@ -1,5 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Modal, Button } from 'react-native';
+
+import { useState } from 'react';
 
 import P1 from './components/P1';
 
@@ -28,13 +30,21 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import AddTask from './components/AddTasks';
 
+import Calendar from './components/Calendar';
+
 export default function App() {
+  const [calVisible, setCalVisible] = useState(false);
+
+
   return (
-<NavigationContainer style = {styles.container }>
+
+
+  <NavigationContainer style = {styles.container }>
    <TabsNavigator/>
  </NavigationContainer> 
-    
-  );
+
+
+);
 }
 
 const styles = StyleSheet.create({
@@ -47,7 +57,18 @@ const styles = StyleSheet.create({
 })
 
 
-  // <View style = {styles.container}> 
-  //       <AddTask style = {styles.add}></AddTask>
-  //   </View>
   
+  
+
+{/* <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+<Button title="Show Calendar" onPress={() => setCalVisible(true)} />
+
+<Modal
+    animationType="slide"
+    transparent={true}
+    visible={calVisible}
+    onRequestClose={() => setCalVisible(false)}
+>
+    <Calendar visible={calVisible} onClose={() => setCalVisible(false)} />
+</Modal>
+</View> */}

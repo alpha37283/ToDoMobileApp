@@ -1,10 +1,26 @@
 // AddTask.js
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, useWindowDimensions, Keyboard, TouchableWithoutFeedback, Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, useWindowDimensions, Keyboard, TouchableWithoutFeedback, Image, Modal } from 'react-native';
 import { BlurView } from 'expo-blur';
+
+import { useState } from 'react';
+
+import Calendar from './Calendar';
 
 function AddTask({ onClose }) {
   const { width } = useWindowDimensions();
+
+  const [calVisible, setCalVisible] = useState(false);
+  const [selectedDate, setSelectedDate] = useState('');
+
+      const toggleModal = () => {
+        setModalVisible(!modalVisible);
+    };
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date); // Update selected date state
+    };
+
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -34,7 +50,7 @@ function AddTask({ onClose }) {
             </View>
           </View>
           <View style={styles.v2}>
-            <TouchableOpacity style={[styles.setDate, { width: width * 0.4, height: width * 0.12 }]}>
+            <TouchableOpacity style={[styles.setDate, { width: width * 0.4, height: width * 0.12 }]} onPress={() => setCalVisible(true)}>
                 <Image source={require('../assets/icnDate.png')} style={[styles.icns,{width : width * 0.05, height : width * 0.05}]}></Image>
                 <Text style={styles.txts}>Date</Text>
             </TouchableOpacity>
@@ -57,6 +73,16 @@ function AddTask({ onClose }) {
             </TouchableOpacity>
           </View>
         </View>
+        <Modal
+            animationType="slide"
+            transparent={true}
+            visible={calVisible}
+            onRequestClose={() => setCalVisible(false)}
+        >
+            <Calendar visible={calVisible} onClose={() => setCalVisible(false)} selectedDate={selectedDate} // Pass the selected date to Calendar
+                    onDateChange={handleDateChange} // Pass the date change handler
+ />
+        </Modal>
       </View>
     </TouchableWithoutFeedback>
   );

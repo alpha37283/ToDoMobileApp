@@ -32,19 +32,21 @@ import AddTask from './components/AddTasks';
 
 import Calendar from './components/Calendar';
 
+
+
 export default function App() {
   const [calVisible, setCalVisible] = useState(false);
 
 
   return (
 
+ <NavigationContainer style = {styles.container }>
+ <TabsNavigator/>
+</NavigationContainer> 
 
-  <NavigationContainer style = {styles.container }>
-   <TabsNavigator/>
- </NavigationContainer> 
+  
 
-
-);
+  );
 }
 
 const styles = StyleSheet.create({
@@ -55,7 +57,6 @@ const styles = StyleSheet.create({
   },
   
 })
-
 
   
   

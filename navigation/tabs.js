@@ -8,6 +8,10 @@ import GroupTasks from '../components/GroupTasks';
 
 import TasksPage from '../components/TasksPage';
 
+import Page4 from '../components/Page4';
+
+import Settings from '../components/Settings';
+
 const Tabs = createBottomTabNavigator();
 
 const screenOpt = {
@@ -135,15 +139,16 @@ const TabsNavigator = () => {
         component={TasksPage}
         options={opt2}
       />
+
       <Tabs.Screen 
         name="Calender" 
-        component={InCompleteTasks} 
+        component={Page4} 
         options={opt3}
         
       />
       <Tabs.Screen 
         name="Settings" 
-        component={GroupTasks} 
+        component={Settings} 
         options={opt4}
       />
     </Tabs.Navigator>

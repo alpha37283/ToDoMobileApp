@@ -35,38 +35,38 @@ import Calendar from './components/Calendar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Settings from './components/Settings';
 
+import TaskInfo  from './components/TaskInfo';
+
 
 export default function App() {
   const [calVisible, setCalVisible] = useState(false);
 
-
   return (
-
- <NavigationContainer style = {styles.container }>
- <TabsNavigator/>
-</NavigationContainer> 
-
-
+    <View style={styles.container}>
+      <TaskInfo />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container : {
-    flex : 1,
-    backgroundColor : 'orange',
-    justifyContent : 'flex-end'
+  container: {
+    flex: 1,
   },
-  
-})
+});
+
 
   
+
+//  <NavigationContainer style = {styles.container }>
+//  <TabsNavigator/>
+// </NavigationContainer> 
   
 
 {/* <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-<Button title="Show Calendar" onPress={() => setCalVisible(true)} />
-
-<Modal
-    animationType="slide"
+  <Button title="Show Calendar" onPress={() => setCalVisible(true)} />
+  
+  <Modal
+  animationType="slide"
     transparent={true}
     visible={calVisible}
     onRequestClose={() => setCalVisible(false)}

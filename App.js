@@ -32,6 +32,8 @@ import AddTask from './components/AddTasks';
 
 import Calendar from './components/Calendar';
 
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Settings from './components/Settings';
 
 
 export default function App() {
@@ -44,7 +46,6 @@ export default function App() {
  <TabsNavigator/>
 </NavigationContainer> 
 
-  
 
   );
 }

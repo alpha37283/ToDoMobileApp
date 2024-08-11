@@ -1,38 +1,40 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Pressable, SafeAreaView, useWindowDimensions, Keyboard,TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Pressable, SafeAreaView, useWindowDimensions, Keyboard,TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'; // Corrected the import for LinearGradient
 import { Calendar } from 'react-native-calendars';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { useFonts } from 'expo-font';
 
 function CalPage() {
     const { width } = useWindowDimensions();
     const [selected, setSelected] = useState('');
 
+    const [fontsLoaded] = useFonts({
+        'Ubuntu-Medium' : require('../assets/fonts/Ubuntu-Medium.ttf')
+    })
+
     return (
-      //  <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <LinearGradient
                 colors={[ '#1253AA', '#05243E']}
                 style={styles.gradient}
             >
                 <SafeAreaView style={styles.safeAreaView}>
                     <View style = {styles.main}> 
-                    <View style={[styles.v1, { height: width * 0.2, top: width * 0.05 }]}>
-                        <Pressable onPress={Keyboard.dismiss}>
-                            <Text style={styles.txt1}>Manage Your Time</Text>
-                        </Pressable>
-                    </View>
+                        <View style={[styles.v1, { height: width * 0.2, top: width * 0.05 }]}>
+                                <Text style={styles.txt1}>Manage Your Time</Text>
+                        </View>
 
-                    <View style={styles.calendar}>
-                        <Calendar
-                            style={[styles.calendarStyle, { width: width * 0.95, height: width * 0.85 }]}
-                            onDayPress={day => {
-                                setSelected(day.dateString);
-                                console.log('Selected day:', day);
-                            }}
-                            markedDates={{
-                                [selected]: { selected: true, selectedDotColor: 'orange' }
-                            }}
-                        />
+                        <View style={styles.calendar}>
+                            <Calendar
+                                style={[styles.calendarStyle, { width: width * 0.95, height: width * 0.85 }]}
+                                onDayPress={day => {
+                                    setSelected(day.dateString);
+                                    console.log('Selected day:', day);
+                                }}
+                                markedDates={{
+                                    [selected]: { selected: true, selectedDotColor: 'orange' }
+                                }}
+                            />
                     </View>
 
                     <View style={[styles.v2, {width : width * 0.95,  height : width * 0.27}]}>
@@ -54,7 +56,7 @@ function CalPage() {
                     </View>
                 </SafeAreaView>
             </LinearGradient>
-    //    </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
     );
 }
 
@@ -82,6 +84,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         color: '#ffffff',
+        fontFamily : 'Ubuntu-Medium'
     },
     calendar: {
         marginBottom: 20,

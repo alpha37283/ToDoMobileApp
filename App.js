@@ -42,9 +42,9 @@ export default function App() {
   const [calVisible, setCalVisible] = useState(false);
 
   return (
-    <View style={styles.container}>
-      <TaskInfo />
-    </View>
+<NavigationContainer style = {styles.container }>
+<TabsNavigator/>
+</NavigationContainer> 
   );
 }
 
@@ -57,10 +57,10 @@ const styles = StyleSheet.create({
 
   
 
-//  <NavigationContainer style = {styles.container }>
-//  <TabsNavigator/>
-// </NavigationContainer> 
   
+{/* <View style={styles.container}>
+  <TaskInfo />
+</View> */}
 
 {/* <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
   <Button title="Show Calendar" onPress={() => setCalVisible(true)} />

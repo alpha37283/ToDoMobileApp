@@ -12,6 +12,8 @@ import Page4 from '../components/Page4';
 
 import Settings from '../components/Settings';
 
+import TaskPageTOInfo from './TaskPageTOInfo';
+
 const Tabs = createBottomTabNavigator();
 
 const screenOpt = {
@@ -136,7 +138,7 @@ const TabsNavigator = () => {
       />
       <Tabs.Screen 
         name="Tasks" 
-        component={TasksPage}
+        component={TaskPageTOInfo}
         options={opt2}
       />
 

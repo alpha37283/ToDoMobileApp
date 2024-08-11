@@ -7,7 +7,17 @@ import TodayTasks from '../rawDATA/TodayTasks';
 import { useFonts } from 'expo-font';
 import AddTask from './AddTasks';
 
-function TasksPage() {
+import TaskInfo from './TaskInfo';
+
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
+
+function TasksPage({navigation}) {
+
+    const task = TodayTasks;
+    
+
     const { width } = useWindowDimensions();
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -49,7 +59,7 @@ function TasksPage() {
                         <Text style={styles.todayTasks}>Today Tasks</Text>
                         <View style={styles.v2}>
                             {TodayTasks.map((data) => (
-                                <TouchableOpacity key={data.id}>
+                                <TouchableOpacity key={data.id} onPress={() => navigation.navigate('TaskInfo',{title : data.title, date : data.time, time : data.time, desc : data.desc})}>
                                     <View style={[styles.tasks, { width: width * 0.45 }]}>
                                         <Text style={styles.title}>{data.title}</Text>
                                         <Text style={styles.desc}>{data.desc}</Text>

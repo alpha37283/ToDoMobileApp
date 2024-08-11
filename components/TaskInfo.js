@@ -2,9 +2,17 @@ import {React} from 'react';
 import { SafeAreaView, StyleSheet, Text, Image, View, Pressable, useWindowDimensions, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from 'expo-font';
+import { useNavigation, useRoute } from '@react-navigation/native';
+
 
 function TaskInfo() {
 
+    const route = useRoute();
+    const {title, date, time, desc} = route.params;
+
+    console.log(title,date,time,desc);
+
+    const navigation = useNavigation();
     const [fontsLoaded] = useFonts({
         'Ubuntu-Medium' : require('../assets/fonts/Ubuntu-Medium.ttf')
     })
@@ -21,7 +29,7 @@ function TaskInfo() {
 
           {/* Header */}
             <View style={styles.header}>
-                <Pressable style = {styles.back} onPress={()=>{console.log('Simon GO BACK')}}> 
+                <Pressable style = {styles.back} onPress={()=> navigation.goBack()}> 
                     <Image source={require('../assets/icnPrevious.png')} style={[styles.imgPrev, {width : width * 0.05, height : width * 0.05}]} />
                 </Pressable>
                 <Text style={styles.taskDetails}>Task Details</Text>
@@ -30,7 +38,7 @@ function TaskInfo() {
           {/* Task Details */}
           <View style={[styles.headings, { marginTop: width * 0.1, }]}>
             <View style={[styles.titleandLogo, { marginBottom: width * 0.03,}]}>
-              <Text style={styles.titleText}>Team Meeting</Text>
+              <Text style={styles.titleText}>{title}</Text>
               <Image source={require('../assets/icnNote.png')} style={[styles.logo,{width : width * 0.05, height : width * 0.05}]} />
             </View>
 
@@ -39,7 +47,7 @@ function TaskInfo() {
               
                 <View style={styles.date}>
                   <Image source={require('../assets/icnTime.png')} style={[styles.dateIcon , {width : width * 0.035, height : width * 0.035}]} />
-                  <Text style={styles.dateText}>'20-20-2002'</Text>
+                  <Text style={styles.dateText}>{date}</Text>
                 </View>
               
                 <Text style = {styles.bar}> | </Text>
@@ -47,7 +55,7 @@ function TaskInfo() {
              
                 <View style={styles.time}>
                   <Image source={require('../assets/icnDate.png')} style={[styles.timeIcon, {width : width * 0.035, height : width * 0.035}]} />
-                  <Text style={styles.timeText}>Tomorrow</Text>
+                  <Text style={styles.timeText}>{time}</Text>
                 </View>
 
             </View>
@@ -55,11 +63,11 @@ function TaskInfo() {
 
           <View style = {styles.desc}>
             <Text style = {[styles.txtDesc, {marginTop : width * 0.2}]}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            {desc}
             </Text>
           </View>
         
-        <View style = {[styles.vBtns, {marginTop : width * 0.2, width : width * 0.9}]}>
+        <View style = {[styles.vBtns, {top : width * 0.4, width : width * 0.9}]}>
             <TouchableOpacity styles = {[styles.btns]}>
                 <View style = {[styles.btn,{width : width * 0.23, height : width * 0.18}]}> 
                     <Image source={require('../assets/icnDone.png')} style = {[styles.icnBtns, { width : width * 0.1, height : width * 0.1}]}></Image>
@@ -139,11 +147,12 @@ const styles = StyleSheet.create({
     },
     dateAndTime: {
       flexDirection: 'row',
-      justifyContent: 'space-evenly',
+      justifyContent: 'flex-start',
       alignItems : 'center',
      // backgroundColor : 'orange',
       width : '70%',
-      opacity : '0.5'
+      opacity : '0.5',
+      marginLeft : 4
     },
     date: {
       flexDirection: 'row',
@@ -160,7 +169,7 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       letterSpacing: 1,
       fontFamily: 'Ubuntu-Medium',
-      marginLeft: 1,
+      left: 1,
     },
     time: {
       flexDirection: 'row',
@@ -177,7 +186,7 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       letterSpacing: 1,
       fontFamily: 'Ubuntu-Medium',
-      marginLeft: 1,
+      left: 1,
     },
     txtDesc : {
         fontSize: 13,

@@ -1,10 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, SafeAreaView, Text, Image, Dimensions, View, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useFonts } from 'expo-font';
 
 const { width, height } = Dimensions.get('window');
 
-function P1() {
+function P1({navigation}) {
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.navigate('P2_5');
+    }, 3000); // 3000ms = 3 seconds
+
+    // Clear timer if the component unmounts before the timeout
+    return () => clearTimeout(timer);
+  }, [navigation]);
+
+
+  const [fontLoaded] = useFonts({
+    'Ubuntu-Medium' : require('../assets/fonts/Ubuntu-Medium.ttf')
+  })
   const [displayedText, setDisplayedText] = useState(''); // Text to display with typing effect
   const fullText = 'V 1.1.0'; // Full text to display
 
@@ -74,12 +89,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: height * 0.02,
     textAlign: 'center',
+    fontFamily : 'Ubuntu-Medium'
   },
   txt2: {
     fontSize: width * 0.04,
     color: '#fff',
     textAlign: 'center',
     marginBottom: height * 0.05,
+    fontFamily : 'Ubuntu-Medium'
   },
   img: {
     width: width * 0.3,

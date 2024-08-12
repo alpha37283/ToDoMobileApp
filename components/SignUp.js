@@ -2,7 +2,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, Image, Pressable, TextInput, useWindowDimensions, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native';
 import { useFonts } from 'expo-font';
-import SignIn from './SignIn';
+
 
 
 function SignUp({navigation}) {

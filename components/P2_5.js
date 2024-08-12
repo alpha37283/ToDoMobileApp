@@ -8,7 +8,7 @@ import Paginator from './Paginator';
 
 
 
-function P2_5() {
+function P2_5({navigation}) {
   const scrollX = useRef(new Animated.Value(0)).current;
   const [currentIndex, setCurrentIndex] = useState(0);
   const slidesRef = useRef(null);
@@ -24,7 +24,7 @@ function P2_5() {
       slidesRef.current.scrollToIndex({index : currentIndex  + 1});
     } else
     {
-      console.log('Last Item !!!! ')
+      navigation.navigate('SignIn')
     }
   }
 

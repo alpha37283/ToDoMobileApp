@@ -2,6 +2,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, useWindowDimensions, Keyboard, TouchableWithoutFeedback, Image, Modal } from 'react-native';
 import { BlurView } from 'expo-blur';
+import { Platform } from 'react-native';
 
 import { useState } from 'react';
 
@@ -45,7 +46,7 @@ function AddTask({ onClose }) {
                     placeholderTextColor={'white'}
                     multiline={true}
                     numberOfLines={4}
-                    style={styles.enterDesc}
+                    style={[styles.enterDesc,{marginTop : Platform.select({android : -28, ios : 0})}]}
                 />
             </View>
           </View>
@@ -141,6 +142,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 10,
     color: 'white',
+    
   },
   icns : {
     marginLeft : 5,

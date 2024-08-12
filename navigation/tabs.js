@@ -2,17 +2,16 @@ import React from 'react';
 import { View, Image, StyleSheet, ImageBackground } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomePage from '../components/HomePage';
-import CompletedTasks from '../components/CompletedTasks';
-import InCompleteTasks from '../components/InCompleteTasks';
-import GroupTasks from '../components/GroupTasks';
 
-import TasksPage from '../components/TasksPage';
 
 import Page4 from '../components/Page4';
 
 import Settings from '../components/Settings';
 
 import TaskPageTOInfo from './TaskPageTOInfo';
+import { useRoute } from '@react-navigation/native';
+
+import { CredentialsContext } from '../context/contextCredentials';
 
 const Tabs = createBottomTabNavigator();
 
@@ -126,34 +125,42 @@ const opt4  = {
 }
 
 const TabsNavigator = () => {
-  return  (
-    <Tabs.Navigator
-      screenOptions={screenOpt}
-    >
-      <Tabs.Screen 
-        name="Home" 
-        component={HomePage} 
-        options={opt1}
-        
-      />
-      <Tabs.Screen 
-        name="Tasks" 
-        component={TaskPageTOInfo}
-        options={opt2}
-      />
 
-      <Tabs.Screen 
-        name="Calender" 
-        component={Page4} 
-        options={opt3}
-        
-      />
-      <Tabs.Screen 
-        name="Settings" 
-        component={Settings} 
-        options={opt4}
-      />
-    </Tabs.Navigator>
+  const route = useRoute();
+  const { email } = route.params;   // use some other method instead of prop drilling
+  console.log(email,'Wellcome from Tabs');
+
+
+  return  (
+    <CredentialsContext.Provider value={{email}}>
+          <Tabs.Navigator
+          screenOptions={screenOpt}
+        >
+          <Tabs.Screen 
+            name="Home" 
+            component={HomePage} 
+            options={opt1}
+            
+          />
+          <Tabs.Screen 
+            name="Tasks" 
+            component={TaskPageTOInfo}
+            options={opt2}
+          />
+
+          <Tabs.Screen 
+            name="Calender" 
+            component={Page4} 
+            options={opt3}
+            
+          />
+          <Tabs.Screen 
+            name="Settings" 
+            component={Settings} 
+            options={opt4}
+          />
+        </Tabs.Navigator>
+      </CredentialsContext.Provider>
   );
 }
 

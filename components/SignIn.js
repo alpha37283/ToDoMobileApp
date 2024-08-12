@@ -3,10 +3,20 @@
 
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Image, Pressable, TextInput, useWindowDimensions, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Image, Pressable, TextInput, useWindowDimensions, TouchableWithoutFeedback, Keyboard , TouchableOpacity} from 'react-native';
 import { useFonts } from 'expo-font';
+import SignUp from './SignUp';
+import TabsNavigator from '../navigation/tabs';
 
-function SignIn() {
+
+
+
+function SignIn({navigation}) {
+
+  const mail = 'alpha';
+  const pwd = '1234';
+
+
   const { width } = useWindowDimensions();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,6 +24,21 @@ function SignIn() {
   const [fontsLoaded] = useFonts({
     'Ubuntu-Medium': require('../assets/fonts/Ubuntu-Medium.ttf'),
   });
+
+
+
+  const checkPassword = () => {
+    if(email === mail && password === pwd)
+    {
+      navigation.navigate('tabs',{email : email})
+    }
+    else
+    {
+      console.log('Not Ok!');
+    }
+  }
+
+
 
   const handleSubmit = () => {
     console.log('email', email);
@@ -65,12 +90,14 @@ function SignIn() {
                             />
                         </View>
                         <Text style={[styles.forget, { marginLeft: width * 0.55 }]}>forget password?</Text>
-                        <Pressable style={[styles.button, { width: width * 0.9 }]} onPress={handleSubmit}>
-                            <Text style={styles.buttonText}>Sign Up</Text>
+                        <Pressable style={[styles.button, { width: width * 0.9 }]} onPress={checkPassword}>
+                            <Text style={styles.buttonText}>Sign In</Text>
                         </Pressable>
                         <View style={styles.dhac}>
-                        <Text style={styles.sgnup1}>Don't have an account?</Text>
-                        <Text style={styles.sgnup2}>Sign up</Text>
+                            <Text style={styles.sgnup1}>Don't have an account?</Text>
+                            <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+                                <Text style={styles.sgnup2}>Sign up</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
             </View>

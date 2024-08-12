@@ -37,15 +37,21 @@ import Settings from './components/Settings';
 
 import TaskInfo  from './components/TaskInfo';
 
+import NavigationMain from './navigation/NavigationMain';
+
 
 export default function App() {
   const [calVisible, setCalVisible] = useState(false);
 
   return (
-<NavigationContainer style = {styles.container }>
-<TabsNavigator/>
-</NavigationContainer> 
-  );
+   
+      
+        <NavigationContainer>
+          <NavigationMain />
+        </NavigationContainer>
+    
+   
+  )
 }
 
 const styles = StyleSheet.create({
@@ -55,12 +61,12 @@ const styles = StyleSheet.create({
 });
 
 
+{/* <NavigationContainer style = {styles.container }>
+<TabsNavigator/>
+</NavigationContainer>  */}
   
 
   
-{/* <View style={styles.container}>
-  <TaskInfo />
-</View> */}
 
 {/* <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
   <Button title="Show Calendar" onPress={() => setCalVisible(true)} />

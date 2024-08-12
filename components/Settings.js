@@ -3,7 +3,7 @@ import { View, StyleSheet, SafeAreaView, Text, Image, TouchableOpacity, useWindo
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 
-function Settings() {
+function Settings({navigation}) {
   const { width } = useWindowDimensions();
 
   const [fontsLoaded] = useFonts({
@@ -85,7 +85,7 @@ function Settings() {
           </View>
 
           <View style={[styles.logoutContainer, { marginTop: width * 0.15, width: width * 0.5, height: width * 0.106 }]}>
-            <Pressable style={styles.logoutBtn} onPress={() => console.log('Logout')}>
+            <Pressable style={styles.logoutBtn} onPress={() => navigation.navigate('SignIn')}>
               <Image source={require('../assets/icnLogout.png')} style={[styles.icns, { width: width * 0.09, height: width * 0.09 }]} />
               <Text style={styles.logoutTxt}>Logout</Text>
             </Pressable>

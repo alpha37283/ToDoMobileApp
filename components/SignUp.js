@@ -1,9 +1,11 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Image, Pressable, TextInput, useWindowDimensions, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Image, Pressable, TextInput, useWindowDimensions, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native';
 import { useFonts } from 'expo-font';
+import SignIn from './SignIn';
 
-function SignUp() {
+
+function SignUp({navigation}) {
   const { width } = useWindowDimensions();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,9 +14,8 @@ function SignUp() {
     'Ubuntu-Medium': require('../assets/fonts/Ubuntu-Medium.ttf'),
   });
 
-  const handleSubmit = () => {
-    console.log('email', email);
-    console.log('Password ', password);
+  const handleSignUp = () => {
+    console.log(email, password);
   };
 
   if (!fontsLoaded) {
@@ -76,12 +77,14 @@ function SignUp() {
                             returnKeyType="done"
                         />
                         </View>
-                        <Pressable style={[styles.button, { width: width * 0.9 }]} onPress={handleSubmit}>
-                        <Text style={styles.buttonText}>Sign In</Text>
-                        </Pressable>
+                        <TouchableOpacity style={[styles.button, { width: width * 0.9 }]} onPress={handleSignUp}>
+                          <Text style={styles.buttonText}>Sign Up</Text>
+                        </TouchableOpacity>
                         <View style={styles.dhac}>
                         <Text style={styles.sgnup1}>Already have an account ?</Text>
-                        <Text style={styles.sgnup2}>Sign In</Text>
+                        <TouchableOpacity onPress={()=>{navigation.navigate('SignIn')}}>
+                          <Text style={styles.sgnup2}>Sign In</Text>
+                        </TouchableOpacity>
                         </View>
                     </View>
             </View>

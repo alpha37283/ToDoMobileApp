@@ -5,9 +5,17 @@ import { useFonts } from 'expo-font';
 import GroupTasks from './GroupTasks';
 import InCompleteTasks from './InCompleteTasks';
 import CompletedTasks from './CompletedTasks';
+import useCredentials from '../context/contextCredentials';
+
+
 
 
 function HomePage() {
+
+
+  const {email } = useCredentials();
+  console.log(email,'Wellcome from Home');
+
   const { width, height } = useWindowDimensions();
 
   const [fontsLoaded] = useFonts({
@@ -26,7 +34,9 @@ function HomePage() {
             <Image source={require('../assets/Profile.png')} style={[styles.avatar, { width: width * 0.12, height: width * 0.12, borderRadius: (width * 0.12) / 2 }]} />
             <View style={styles.userInfo}>
               <Text style={[styles.name, { fontSize: width * 0.05 }]}>Oussama Chahidi</Text>
-              <Text style={[styles.email, { fontSize: width * 0.035 }]}>oussama.chahidi@gmail.com</Text>
+              <Text style={[styles.email, { fontSize: width * 0.035 }]}>{email}
+
+              </Text>
             </View>
             <Image source={require('../assets/Bell.png')} style={[styles.notificationIcon, { width: width * 0.08, height: width * 0.08 }]} />
           </View>
